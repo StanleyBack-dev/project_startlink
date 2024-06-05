@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Consulta</title>
+    <link rel="stylesheet" href="/styles/stylesConsulta.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Lista de Usuários</h2>
+        <table class="usuarios-table">
+            <thead>
+                <tr>
+                    <th>Nome Completo</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Endereço / CEP</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% usuarios.forEach(usuario => { %>
+                    <tr>
+                        <td><%= usuario.nome_completo %></td>
+                        <td><%= usuario.email %></td>
+                        <td><%= usuario.telefone %></td>
+                        <td><%= usuario.endereco_residencial %></td>
+                        <td>
+                            <form action="/api/delete/<%= usuario.idtb_identificacao %>" method="post" class="delete-form">
+                                <button type="submit" class="delete-button">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <h2>Detalhes para Edição</h2>
+        <% usuarios.forEach(usuario => { %>
+            <div class="usuario-edit">
+                <form id="edit-form" action="/api/update/<%= usuario.idtb_identificacao %>" method="post">
+                    <input type="hidden" name="userId" value="<%= usuario.idtb_identificacao %>">
+                    <label for="nomeCompleto_<%= usuario.idtb_identificacao %>">Nome Completo:</label>
+                    <input type="text" id="nomeCompleto_<%= usuario.idtb_identificacao %>" name="nomeCompleto" value="<%= usuario.nome_completo %>">
+                    <label for="email_<%= usuario.idtb_identificacao %>">Email:</label>
+                    <input type="text" id="email_<%= usuario.idtb_identificacao %>" name="email" value="<%= usuario.email %>">
+                    <label for="telefone_<%= usuario.idtb_identificacao %>">Telefone:</label>
+                    <input type="text" id="telefone_<%= usuario.idtb_identificacao %>" name="telefone" value="<%= usuario.telefone %>">
+                    <label for="endereco_<%= usuario.idtb_identificacao %>">Endereço / CEP:</label>
+                    <input type="text" id="endereco_<%= usuario.idtb_identificacao %>" name="endereco" value="<%= usuario.endereco_residencial %>">
+                    <button type="submit" class="save-button">Salvar Alterações</button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
