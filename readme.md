@@ -9,7 +9,7 @@ Este guia passo a passo irá ajudá-lo a configurar e executar o projeto Starlin
 3. Execute o seguinte comando para clonar o repositório:
 
 ```
-git clone https://github.com/seu-usuario/project_startlink.git
+git clone https://github.com/StanleyBack-dev/project_startlink.git
 ```
 
 ## Acessar o Projeto
